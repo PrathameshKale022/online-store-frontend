@@ -1,0 +1,35 @@
+/* SitePage.css */
+
+.site-container {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+  
+  .product-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .product-list li {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+  }
+  
+  .product-list li:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .filter-container {
+    margin-top: 20px;
+  }
+  
+  .filter-container select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  

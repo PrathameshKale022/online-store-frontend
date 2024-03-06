@@ -1,0 +1,47 @@
+/* AdminProductsList.css */
+
+.product-list-container {
+    margin-top: 20px;
+  }
+  
+  .product-list-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .product-list-table th,
+  .product-list-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .product-list-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .product-list-table td {
+    text-align: left;
+  }
+  
+  .product-list-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .product-list-table tr:hover {
+    background-color: #e6f7ff;
+  }
+  
+  .product-list-actions button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .product-list-actions button:hover {
+    background-color: #0056b3;
+  }
+  

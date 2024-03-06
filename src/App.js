@@ -1,25 +1,75 @@
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Routes, Navigate,Route } from 'react-router-dom';
+import AdminPage from './pages/AdminPage';
+import SitePage from './pages/SitePage';
+import AuthService from './services/AuthService';
+import LoginForm from './components/site/LoginForm';
+import { useState } from 'react';
 
-function App() {
+
+const App = () => {
+  // const [loggedIn, setLoggedIn] = useState(AuthService.isAuthenticated());
+  const [loggedIn, setLoggedIn] = useState(false);
+ 
+
+  const handleLogin = () => {
+    setLoggedIn(true);
+  };
+  const handleLoginSuccess = () => {
+    // Redirect to AdminPage after successful login
+    console.log("handleLoginSuccess called")
+   
+  };
+
+  const handleLogout = () => {
+    //AuthService.logout();
+    setLoggedIn(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+      <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/login" element={<LoginForm onLogin={handleLogin} />} />
+        {/* <Route path="/admin" element={<AdminPage />} />
+        <Route path="/" element={<SitePage />} /> */}
+        <Route path="/admin" element={<AdminPage loggedIn={loggedIn}/>}  />
+        <Route path="/site" element={<SitePage loggedIn={loggedIn}/>} />
+      </Routes>
+      {loggedIn && (
+          <p>
+            <button onClick={handleLogout}>Logout</button>
+          </p>
+        )}
+    </Router>
   );
-}
+};
+
+// PrivateRoute component to protect routes based on user type
+const PrivateRoute = ({ element: Element, userType }) => {
+  // function to determine if user is authenticated
+  const isAuthenticated = () => {
+    // logic to check if user is authenticated here
+    
+    return true;
+  };
+
+
+  return (
+    <Route
+      element={isAuthenticated() ? <Element /> : <Navigate to="/login" />}
+    />
+  );
+  // if (!isAuthenticated()) {
+  //   return <Navigate to="/login" />;
+  // }
+
+  // if (userType === 'admin') {
+  //   return <Element />;
+  // } else {
+  //   return <Navigate to="/" />;
+  // }
+};
 
 export default App;
